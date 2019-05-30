@@ -60,6 +60,7 @@ button:focus {
   color: white;
   border: none;
   display: none;
+  width: 80px;
 }
 #button-zigzag-b {
   width: 140px;
@@ -108,6 +109,9 @@ button:focus {
   }
   #button-zigzag-f {
     width: 120px;
+  }
+  #button-animate {
+    width: 70px;
   }
   h1 {
     font-size: 25px;
