@@ -63,7 +63,7 @@ button:focus {
   display: none;
 }
 #button-zigzag-b {
-  width: 130px;
+  width: 140px;
 }
 #button-zigzag-f {
   width: 130px;
@@ -71,7 +71,7 @@ button:focus {
 #graphic {
   max-width: 500px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 10px;
   padding: 10px;
 }
 #graphic-svg {
