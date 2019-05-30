@@ -1,5 +1,4 @@
 body,html {
-  min-width: 800px;
   max-width: 850px;
   margin: 0 auto;
   color: #002145;
@@ -8,7 +7,7 @@ body,html {
 #title {
   position: relative;
   margin: 0 auto;
-  width: 590px;
+  max-width: 590px;
   margin-top: 30px;
   margin-bottom: 30px;
   color: navy;
@@ -26,8 +25,9 @@ p {
 }
 #options {
   display: flex;
-  max-width: 590px;
+  max-width: 650px;
   margin: auto;
+  padding: 10px;
 }
 #button-container {
   margin: 0 auto;
@@ -44,8 +44,8 @@ button {
   border: 1.5px solid navy;
   font-size: 12px;
   cursor: pointer;
-  margin-left: 0.5em;
   color: navy;
+  margin: 3px;
 }
 button:focus {
   outline: 0;
@@ -62,10 +62,17 @@ button:focus {
   border: none;
   display: none;
 }
+#button-zigzag-b {
+  width: 130px;
+}
+#button-zigzag-f {
+  width: 130px;
+}
 #graphic {
   max-width: 500px;
   margin: auto;
   margin-top: 50px;
+  padding: 10px;
 }
 #graphic-svg {
   height: 500px;
