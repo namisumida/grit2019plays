@@ -11,6 +11,8 @@ body,html {
   margin-top: 20px;
   margin-bottom: 10px;
   color: navy;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 #instructions {
   margin: auto;
@@ -98,7 +100,7 @@ button:focus {
     padding-top: 0;
   }
   #title {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
   }
   button {
@@ -115,6 +117,9 @@ button:focus {
     width: 70px;
   }
   h1 {
-    font-size: 25px;
+    font-size: 22px;
+  }
+  p {
+    font-size: 11px;
   }
 }
