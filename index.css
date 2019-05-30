@@ -34,7 +34,6 @@ p {
 }
 button {
   background-color: #DCDCDC;
-  font-size: 14px;
   border-radius: 3px;
   font-weight: 600;
   height: 28px;
@@ -90,4 +89,27 @@ button:focus {
 #force {
   display: none;
   stroke: black;
+}
+@media screen and (max-width:400px) {
+  #graphic {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  #title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  button {
+    font-size: 11px;
+    width: 60px;
+  }
+  #button-zigzag-b {
+    width: 140px;
+  }
+  #button-zigzag-f {
+    width: 120px;
+  }
+  h1 {
+    font-size: 25px;
+  }
 }
