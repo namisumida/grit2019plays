@@ -12,6 +12,10 @@ body,html {
   margin-bottom: 10px;
   color: navy;
 }
+#instructions {
+  margin: auto;
+  margin-top: 10px;
+}
 h1 {
   font-size: 30px;
   text-align: center;
@@ -51,9 +55,6 @@ button:focus {
 }
 #button-magician {
   width: 80px;
-}
-#button-flood {
-  width: 90px;
 }
 #button-animate {
   background-color: red;

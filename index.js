@@ -206,14 +206,14 @@ function init() {
          else if (i==3) { return margin.top + 190; } // cutter 1
          else if (i==4) { return margin.top + 260; } // cutter 2
          else if (i==5) { return margin.top + 330; } // cutter 3
-         else if (i==6) { return height*2; } // cutter 4
+         else if (i==6) { return height*1.5; } // cutter 4
        });
      svg.select("#disc")
         .transition()
         .delay(2000)
         .duration(1500)
         .attr("cx", width/2 - 40)
-        .attr("cy", height*2);
+        .attr("cy", height*1.5);
     d3.select("#button-animate").style("display", "none"); // Disable animate
   }; // end animate_magician
   function set_zigzag(force) {
