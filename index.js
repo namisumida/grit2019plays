@@ -7,8 +7,6 @@ function init() {
   var dataset_offense = [0,1,2,3,4,5,6]; // handler 1, handler 2, handler 3, cutters...
   //////////////////////////////////////////////////////////////////
   // Building blocks
-  // Field
-
   // Players
   svg.selectAll("offense")
      .data(dataset_offense)
@@ -23,20 +21,20 @@ function init() {
   // Force
   svg.append("line")
      .attr("id", "force");
-
-//////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////
   function reset() { // function that hides elements
     svg.selectAll(".offenseDots").style("display", "none");
     svg.selectAll("#disc").style("display", "none");
     svg.selectAll("#force").style("display", "none");
-    d3.select("#button-animate").style("display", "none");
+    // default button
+    d3.selectAll("button").style("background-color", "#DCDCDC").style("color", "navy");
+    d3.select("#button-animate").style("background-color", "red").style("color", "white");
   }; // end reset
   function display() { // function that displays elements
     svg.selectAll(".offenseDots").style("display", "inline");
     svg.select("#disc").style("display", "inline");
     svg.select("#force").style("display", "inline");
   }; // end display
-
   function set_x() {
     // Players
     svg.selectAll(".offenseDots")
@@ -73,7 +71,7 @@ function init() {
     // under cut
     svg.selectAll(".offenseDots")
        .transition()
-       .duration(2000)
+       .duration(1500)
        .attr("cx", function(d,i) {
          if (i==6) { return width/3 + 10; }
          else if (i==0) { return width/2; } // handler 1
@@ -94,16 +92,16 @@ function init() {
        });
     svg.select("#disc")
        .transition()
-       .delay(2000)
-       .duration(1000)
+       .delay(1500)
+       .duration(500)
        .attr("cx", width/3 + 10)
        .attr("cy", margin.top + 180)
 
     // deep comes under
     svg.selectAll(".offenseDots")
        .transition()
-       .delay(3000)
-       .duration(1000)
+       .delay(2300)
+       .duration(800)
        .attr("cx", function(d,i) {
          if (i==6) { return width/3 + 10; }
          else if (i==0) { return width/2; } // handler 1
@@ -125,24 +123,241 @@ function init() {
     // disc thrown to deep cutter coming under
     svg.select("#disc")
        .transition()
-       .delay(4000)
-       .duration(1000)
+       .delay(3100)
+       .duration(500)
        .attr("cx", width/3)
        .attr("cy", height - margin.top - margin.bottom - 100)
 
-    // Disable animate
-    d3.select("#button-animate").style("display", "none");
+    d3.select("#button-animate").style("display", "none"); // Disable animate
   }; // end animate_x
   function set_magician() {
-
+    // Players
+    svg.selectAll(".offenseDots")
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width*2/3 + 50; } // handler 2
+         else { return width - 60; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top + 50; } // magician
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 190; } // cutter 1
+         else if (i==4) { return margin.top + 260; } // cutter 2
+         else if (i==5) { return margin.top + 330; } // cutter 3
+         else if (i==6) { return margin.top + 400; } // cutter 4
+       })
+    // Disc
+    svg.select("#disc")
+       .attr("cx", width/2)
+       .attr("cy", margin.top + 50)
+    // Force
+    svg.select("#force")
+       .attr("x1", width/2 - 3)
+       .attr("x2", width/2+20)
+       .attr("y1", margin.top + 70)
+       .attr("y2", margin.top + 55)
+    display();
   }; // end set_magician
+  function animate_magician() {
+    svg.selectAll(".offenseDots")
+       .transition()
+       .duration(1500)
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/2 - 20; } // magician
+         else { return width - 60; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top + 190; } // magician
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 190; } // cutter 1
+         else if (i==4) { return margin.top + 260; } // cutter 2
+         else if (i==5) { return margin.top + 330; } // cutter 3
+         else if (i==6) { return margin.top + 400; } // cutter 4
+       });
+    svg.select("#disc")
+       .transition()
+       .delay(1500)
+       .duration(500)
+       .attr("cx", width/2 - 20)
+       .attr("cy", margin.top + 190);
+    svg.selectAll(".offenseDots")
+       .transition()
+       .delay(2300)
+       .duration(1500)
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/2 - 20; } // magician
+         else if (i==6) { return width/2; }
+         else { return width - 60; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top + 190; } // magician
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 190; } // cutter 1
+         else if (i==4) { return margin.top + 260; } // cutter 2
+         else if (i==5) { return margin.top + 330; } // cutter 3
+         else if (i==6) { return height + 30; } // cutter 4
+       });
+     svg.select("#disc")
+        .transition()
+        .delay(2300)
+        .duration(1500)
+        .attr("cx", width/2)
+        .attr("cy", height + 30);
+    d3.select("#button-animate").style("display", "none"); // Disable animate
+  }; // end animate_magician
   function set_zigzag() {
-
+    // Players
+    svg.selectAll(".offenseDots")
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/3; } // handler 2
+         else if (i==2) { return width - 60; } // handler 3
+         else if (i==3) { return width/3 + 10; }
+         else if (i==4) { return width/2 + 30; }
+         else { return width - 60; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top; } // handler 2
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 180; } // deep cut 1
+         else if (i==4) { return margin.top + 180; } // deep cut 2
+         else if (i==5) { return margin.top + 200; } // in stack
+         else if (i==6) { return margin.top + 280; } // in stack
+       })
+    // Disc
+    svg.select("#disc")
+       .attr("cx", width/2)
+       .attr("cy", margin.top + 50)
+    // Force
+    svg.select("#force")
+       .attr("x1", width/2 - 3)
+       .attr("x2", width/2+20)
+       .attr("y1", margin.top + 70)
+       .attr("y2", margin.top + 55)
+    display();
   }; // end set_zigzag
+  function animate_zigzag() {
+    svg.selectAll(".offenseDots")
+       .transition()
+       .duration(1500)
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/3; } // handler 2
+         else if (i==2) { return width - 60; } // handler 3
+         else if (i==3) { return width/3 + 10; } // iso cutter
+         else if (i==4) { return width/2 + 30; } // iso cutter
+         else { return width - 60; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top; } // handler 2
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 300; } // iso cutter
+         else if (i==4) { return margin.top + 300; } // iso cutter
+         else if (i==5) { return margin.top + 200; } // in stack
+         else if (i==6) { return margin.top + 280; } // in stack
+       })
+       .transition()
+       .duration(1500)
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/3; } // handler 2
+         else if (i==2) { return width - 60; } // handler 3
+         else if (i==3) { return width/2 + 50; } // iso cutter
+         else if (i==4) { return width/3 - 20; } // iso cutter
+         else { return width - 60; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top; } // handler 2
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 200; } // iso cutter
+         else if (i==4) { return margin.top + 200; } // iso cutter
+         else if (i==5) { return margin.top + 200; } // in stack
+         else if (i==6) { return margin.top + 280; } // in stack
+       });
+    svg.select("#disc")
+       .transition()
+       .delay(3000)
+       .duration(500)
+       .attr("cx", width/3 - 20)
+       .attr("cy", margin.top + 200);
+    d3.select("#button-animate").style("display", "none"); // Disable animate
+  }; // end animate_zigzag
   function set_flood() {
-
+    // Players
+    svg.selectAll(".offenseDots")
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/3; } // handler 2
+         else { return width - 120; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top; } // handler 2
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 190; } // deep cut 1
+         else if (i==4) { return margin.top + 260; } // deep cut 2
+         else if (i==5) { return margin.top + 330; } // in stack
+         else if (i==6) { return margin.top + 400; } // in stack
+       })
+    // Disc
+    svg.select("#disc")
+       .attr("cx", width/2)
+       .attr("cy", margin.top + 50)
+    // Force
+    svg.select("#force")
+       .attr("x1", width/2-20)
+       .attr("x2", width/2+3)
+       .attr("y1", margin.top + 55)
+       .attr("y2", margin.top + 70)
+    display();
   }; // end set_flood
-
+  function animate_flood() {
+    // flood
+    svg.selectAll(".offenseDots")
+       .transition()
+       .duration(1500)
+       .attr("cx", function(d,i) {
+         if (i==0) { return width/2; } // handler 1
+         else if (i==1) { return width/3; } // handler 2
+         else if (i==6) { return width - 120; } // under
+         else { return width/3 - 50; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top; } // handler 2
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 190; } // deep cut 1
+         else if (i==4) { return margin.top + 260; } // deep cut 2
+         else if (i==5) { return margin.top + 330; } // in stack
+         else if (i==6) { return margin.top + 400; } // in stack
+       })
+       .transition()
+       .duration(800)
+       .attr("cy", function(d,i) {
+         if (i==0) { return margin.top + 50; } // handler 1
+         else if (i==1) { return margin.top; } // handler 2
+         else if (i==2) { return margin.top + 120; }
+         else if (i==3) { return margin.top + 190; }
+         else if (i==4) { return margin.top + 260; }
+         else if (i==5) { return margin.top + 330; }
+         else if (i==6) { return margin.top + 200; }
+       });
+    svg.select("#disc")
+       .transition()
+       .delay(2300)
+       .duration(500)
+       .attr("cx", width - 120)
+       .attr("cy", margin.top + 200);
+    d3.select("#button-animate").style("display", "none"); // Disable animate
+  }; // end animate_flood
   d3.select("#button-x").on("click", function() {
     reset();
     set_x();
@@ -153,7 +368,40 @@ function init() {
     d3.select("#button-animate").on("click", function() {
       animate_x();
     })
-  })
+  });
+  d3.select("#button-flood").on("click", function() {
+    reset();
+    set_flood();
+    // button style
+    d3.select(this).style("background-color", "navy");
+    d3.select(this).style("color", "white");
+    d3.select("#button-animate").style("display", "inline");
+    d3.select("#button-animate").on("click", function() {
+      animate_flood();
+    })
+  });
+  d3.select("#button-magician").on("click", function() {
+    reset();
+    set_magician();
+    // button style
+    d3.select(this).style("background-color", "navy");
+    d3.select(this).style("color", "white");
+    d3.select("#button-animate").style("display", "inline");
+    d3.select("#button-animate").on("click", function() {
+      animate_magician();
+    })
+  });
+  d3.select("#button-zigzag").on("click", function() {
+    reset();
+    set_zigzag();
+    // button style
+    d3.select(this).style("background-color", "navy");
+    d3.select(this).style("color", "white");
+    d3.select("#button-animate").style("display", "inline");
+    d3.select("#button-animate").on("click", function() {
+      animate_zigzag();
+    })
+  });
 };
 
 init();

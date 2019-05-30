@@ -31,7 +31,6 @@ p {
 }
 #button-container {
   margin: 0 auto;
-  width: 590px;
 }
 button {
   background-color: #DCDCDC;
@@ -70,9 +69,8 @@ button:focus {
 }
 #graphic-svg {
   height: 500px;
-  border: 2px solid black;
-  border-bottom: none;
-  border-top: none;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
 }
 .offenseDots {
   fill: gray;
