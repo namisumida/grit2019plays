@@ -4,6 +4,41 @@ body,html {
   color: #002145;
   font-family: system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
+#main {
+  display: none;
+}
+#password {
+  max-width: 200px;
+  margin: auto;
+  margin-top: 30px;
+}
+.number-row {
+  display: flex;
+}
+.button-number {
+  font-size: 25px;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  -webkit-transition: 0.5s; /* Safari */
+  transition: 0.1s;
+}
+.button-number.clicked {
+  background-color: navy;
+  color: white;
+}
+#button-enter {
+  margin: auto;
+  margin-top: 10px;
+  font-size: 15px;
+}
+#incorrect-text {
+  display: none;
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  color: red;
+}
 #title {
   position: relative;
   margin: 0 auto;

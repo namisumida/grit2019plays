@@ -463,4 +463,24 @@ function init() {
   });
 };
 
-init();
+var numEntered = []; // array to hold numbers entered
+d3.selectAll(".button-number").on("click", function() {
+  d3.select("#incorrect-text").style("display", "none"); // remove incorrect text if displayed
+  d3.selectAll(".button-number").classed("clicked", false);
+  d3.select(this).classed("clicked", true);
+  numEntered.push(d3.select(this).node().value);
+})
+d3.select("#button-enter").on("click", function() {
+  d3.selectAll(".button-number").classed("clicked", false);
+  // correct password
+  if (numEntered.toString() == "1,3,9,7") {
+    d3.select("#password").style("display", "none");
+    d3.select("#main").style("display", "inline");
+    init();
+  }
+  // incorrect password
+  else {
+    d3.select("#incorrect-text").style("display", "inline");
+    numEntered = [];
+  }
+})
