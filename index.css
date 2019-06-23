@@ -65,13 +65,33 @@ p {
   font-size: 13px;
 }
 #options {
-  display: flex;
   max-width: 650px;
   margin: auto;
   padding: 10px;
 }
 #button-container {
   margin: 0 auto;
+  width: 500px;
+}
+#button2-container {
+  display: none;
+  width: 420px;
+  margin: auto;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 85px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 button {
   background-color: #DCDCDC;
@@ -90,6 +110,10 @@ button {
 button:focus {
   outline: 0;
 }
+.button2 {
+  background-color: white;
+  width: 80px;
+}
 #button-magician {
   width: 80px;
 }
@@ -98,7 +122,6 @@ button:focus {
   color: white;
   border: none;
   display: none;
-  width: 80px;
 }
 #button-zigzag-b {
   width: 140px;
@@ -126,6 +149,10 @@ button:focus {
   display: none;
 }
 #force {
+  display: none;
+  stroke: black;
+}
+#defense1 {
   display: none;
   stroke: black;
 }
