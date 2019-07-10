@@ -57,10 +57,10 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width*.8; } // handler 2
-         else if (i==2) { return width*.9; } // handler 3
+         else if (i==2) { return width-margin.right; } // handler 3
          else if (i==3) { return width/3 + 10; } // deep cutter 1
          else if (i==4) { return width/2 + 30; } // deep cutter 2
-         else { return width*.9; } // stack
+         else { return width-margin.right; } // stack
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 30; } // handler 1
@@ -93,10 +93,10 @@ function init() {
        .attr("cx", function(d,i) {
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width*.8; } // handler 2
-         else if (i==2) { return width*.9; } // handler 3
+         else if (i==2) { return width-margin.right; } // handler 3
          else if (i==3) { return width/3 + 10; }
          else if (i==4) { return width/2 + 30; }
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) {
          if (i==0) { return margin.top + 30; } // handler 1
@@ -129,10 +129,10 @@ function init() {
          if (i==6) { return width/3; }
          else if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width*.8; } // handler 2
-         else if (i==2) { return width*.9; } // handler 3
+         else if (i==2) { return width-margin.right; } // handler 3
          else if (i==3) { return width/3; }
          else if (i==4) { return width/2 + 30; }
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 30; } // handler 1
@@ -162,7 +162,7 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width*2/3 + 20; } // handler 2
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
@@ -193,7 +193,7 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/2 - 50; } // magician
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
@@ -218,7 +218,7 @@ function init() {
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/2 - 50; } // magician
          else if (i==6) { return width/2; }
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
@@ -246,10 +246,10 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
-         else if (i==2) { return width*.9; } // handler 3
+         else if (i==2) { return width-margin.right; } // handler 3
          else if (i==3) { return margin.left + 10; } // cutter 1
          else if (i==4) { return width/2; } // cutter 2
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
@@ -289,10 +289,10 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
-         else if (i==2) { return width*.9; } // handler 3
+         else if (i==2) { return width-margin.right; } // handler 3
          else if (i==3) { return margin.left + 10; } // iso cutter
          else if (i==4) { return width/2; } // iso cutter
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
@@ -336,10 +336,10 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
-         else if (i==2) { return width*.9; } // handler 3
+         else if (i==2) { return width-margin.right; } // handler 3
          else if (i==3) { return margin.left + 10; } // iso cutter
          else if (i==4) { return width/2; } // iso cutter
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
@@ -381,7 +381,7 @@ function init() {
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
-         else { return width*.9; }
+         else { return width-margin.right; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
