@@ -69,14 +69,15 @@ p {
   margin: auto;
   padding: 10px;
 }
-#button-container {
+.button-container {
   margin: 0 auto;
-  width: 500px;
+  width: 560px;
 }
-#button2-container {
-  display: none;
-  width: 420px;
-  margin: auto;
+#button-container2 {
+  display: flex;
+}
+#empty-div {
+  flex-grow: 2;
 }
 .dropdown {
   float: left;
@@ -132,8 +133,6 @@ button:focus {
 #graphic {
   max-width: 500px;
   margin: auto;
-  margin-top: 10px;
-  padding: 10px;
 }
 #graphic-svg {
   height: 500px;

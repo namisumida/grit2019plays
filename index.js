@@ -21,16 +21,20 @@ function init() {
   // Force
   svg.append("line")
      .attr("id", "force");
-   // Force 2
-   svg.append("line")
+  // Force 2
+  svg.append("line")
       .attr("id", "defense1");
+  // Words
+  svg.append("text")
+     .attr("id", "word");
   //////////////////////////////////////////////////////////////////
   function reset() { // function that hides elements
     // Hide elements
-    svg.selectAll(".offenseDots").style("display", "none");
+    svg.selectAll(".offenseDots").style("fill", "black").style("display", "none");
     svg.select("#disc").style("display", "none");
     svg.select("#force").style("display", "none");
     svg.select("#defense1").style("display", "none");
+    svg.select("#word").style("display", "none");
     // default button
     d3.selectAll("button").style("background-color", "#DCDCDC").style("color", "navy");
     d3.select("#button-animate").style("background-color", "red").style("color", "white").style("display", "inline");
@@ -52,35 +56,35 @@ function init() {
     svg.selectAll(".offenseDots")
        .attr("cx", function(d,i) { // set up
          if (i==0) { return width/2; } // handler 1
-         else if (i==1) { return width/3; } // handler 2
+         else if (i==1) { return width*.8; } // handler 2
          else if (i==2) { return width*.9; } // handler 3
          else if (i==3) { return width/3 + 10; } // deep cutter 1
          else if (i==4) { return width/2 + 30; } // deep cutter 2
          else { return width*.9; } // stack
        })
        .attr("cy", function(d,i) { // set up
-         if (i==0) { return margin.top + 50; } // handler 1
-         else if (i==1) { return margin.top; } // handler 2
-         else if (i==2) { return margin.top + 120; } // top of stack
-         else if (i==3) { return margin.top + 180; } // deep cut 1
-         else if (i==4) { return margin.top + 180; } // deep cut 2
-         else if (i==5) { return margin.top + 200; } // in stack
-         else if (i==6) { return margin.top + 280; } // in stack
+         if (i==0) { return margin.top + 30; } // handler 1
+         else if (i==1) { return margin.top + 30; } // handler 2
+         else if (i==2) { return margin.top + 100; } // top of stack
+         else if (i==3) { return margin.top + 160; } // deep cut 1
+         else if (i==4) { return margin.top + 160; } // deep cut 2
+         else if (i==5) { return margin.top + 180; } // in stack
+         else if (i==6) { return margin.top + 260; } // in stack
        })
     // Disc
     svg.select("#disc")
        .attr("cx", width/2)
-       .attr("cy", margin.top + 50)
+       .attr("cy", margin.top + 30)
     // Force
     svg.select("#force")
        .attr("x1", width/2 - 3)
        .attr("x2", width/2+20)
-       .attr("y1", margin.top + 70)
-       .attr("y2", margin.top + 55)
+       .attr("y1", margin.top + 50)
+       .attr("y2", margin.top + 35)
     display(false);
   }; // end set_x
   function animate_x() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     // under cut
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i<6; })
@@ -88,19 +92,19 @@ function init() {
        .duration(1500)
        .attr("cx", function(d,i) {
          if (i==0) { return width/2; } // handler 1
-         else if (i==1) { return width/3; } // handler 2
+         else if (i==1) { return width*.8; } // handler 2
          else if (i==2) { return width*.9; } // handler 3
          else if (i==3) { return width/3 + 10; }
          else if (i==4) { return width/2 + 30; }
          else { return width*.9; }
        })
        .attr("cy", function(d,i) {
-         if (i==0) { return margin.top + 50; } // handler 1
-         else if (i==1) { return margin.top; } // handler 2
-         else if (i==2) { return margin.top + 120; } // top of stack
+         if (i==0) { return margin.top + 30; } // handler 1
+         else if (i==1) { return margin.top + 30; } // handler 2
+         else if (i==2) { return margin.top + 100; } // top of stack
          else if (i==3) { return height - margin.top - margin.bottom; } // deep cut 1
          else if (i==4) { return height - margin.top - margin.bottom; } // deep cut 2
-         else { return margin.top + 200; } // in stack
+         else { return margin.top + 180; } // in stack
        });
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i==6; })
@@ -108,13 +112,13 @@ function init() {
        .delay(800)
        .duration(1000)
        .attr("cx", width/3)
-       .attr("cy", margin.top + 180)
+       .attr("cy", margin.top + 160)
     svg.select("#disc")
        .transition()
        .delay(1000)
        .duration(800)
        .attr("cx", width/3)
-       .attr("cy", margin.top + 180)
+       .attr("cy", margin.top + 160)
 
     // deep comes under
     svg.selectAll(".offenseDots")
@@ -124,20 +128,20 @@ function init() {
        .attr("cx", function(d,i) {
          if (i==6) { return width/3; }
          else if (i==0) { return width/2; } // handler 1
-         else if (i==1) { return width/3; } // handler 2
+         else if (i==1) { return width*.8; } // handler 2
          else if (i==2) { return width*.9; } // handler 3
          else if (i==3) { return width/3; }
          else if (i==4) { return width/2 + 30; }
          else { return width*.9; }
        })
        .attr("cy", function(d,i) { // set up
-         if (i==0) { return margin.top + 50; } // handler 1
-         else if (i==1) { return margin.top; } // handler 2
-         else if (i==2) { return margin.top + 120; } // top of stack
-         else if (i==3) { return height - margin.top - margin.bottom - 100; } // deep cut 1
+         if (i==0) { return margin.top + 30; } // handler 1
+         else if (i==1) { return margin.top + 30; } // handler 2
+         else if (i==2) { return margin.top + 100; } // top of stack
+         else if (i==3) { return height - margin.top - margin.bottom - 80; } // deep cut 1
          else if (i==4) { return height - margin.top - margin.bottom; } // deep cut 2
-         else if (i==5) { return margin.top + 200; } // in stack
-         else if (i==6) { return margin.top + 180; } // in stack
+         else if (i==5) { return margin.top + 180; } // in stack
+         else if (i==6) { return margin.top + 160; } // in stack
        })
     // disc thrown to deep cutter coming under
     svg.select("#disc")
@@ -145,12 +149,12 @@ function init() {
        .delay(2000)
        .duration(800)
        .attr("cx", width/3)
-       .attr("cy", height - margin.top - margin.bottom - 100)
+       .attr("cy", height - margin.top - margin.bottom - 80)
 
     d3.select("#button-animate")
       .transition()
       .delay(3300)
-      .style("display", "inline");
+      .style("background-color", "red");
   }; // end animate_x
   function set_magician() {
     // Players
@@ -182,7 +186,7 @@ function init() {
     display(false);
   }; // end set_magician
   function animate_magician() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     svg.selectAll(".offenseDots")
        .transition()
        .duration(1500)
@@ -234,7 +238,7 @@ function init() {
     d3.select("#button-animate")
       .transition()
       .delay(4000)
-      .style("display", "inline");
+      .style("background-color", "red");
   }; // end animate_magician
   function set_zigzag(force) {
     // Players
@@ -243,16 +247,16 @@ function init() {
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
          else if (i==2) { return width*.9; } // handler 3
-         else if (i==3) { return width/3 + 10; }
-         else if (i==4) { return width/2 + 30; }
+         else if (i==3) { return margin.left + 10; } // cutter 1
+         else if (i==4) { return width/2; } // cutter 2
          else { return width*.9; }
        })
        .attr("cy", function(d,i) { // set up
          if (i==0) { return margin.top + 50; } // handler 1
          else if (i==1) { return margin.top; } // handler 2
          else if (i==2) { return margin.top + 120; } // top of stack
-         else if (i==3) { return margin.top + 180; } // deep cut 1
-         else if (i==4) { return margin.top + 180; } // deep cut 2
+         else if (i==3) { return margin.top + 180; } // cutter 1
+         else if (i==4) { return margin.top + 180; } // cutter 2
          else if (i==5) { return margin.top + 200; } // in stack
          else if (i==6) { return margin.top + 280; } // in stack
        })
@@ -278,7 +282,7 @@ function init() {
     display(false);
   }; // end set_zigzag
   function animate_zigzag_forehand() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     svg.selectAll(".offenseDots")
        .transition()
        .duration(1500)
@@ -286,8 +290,8 @@ function init() {
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
          else if (i==2) { return width*.9; } // handler 3
-         else if (i==3) { return width/3 + 10; } // iso cutter
-         else if (i==4) { return width/2 + 30; } // iso cutter
+         else if (i==3) { return margin.left + 10; } // iso cutter
+         else if (i==4) { return width/2; } // iso cutter
          else { return width*.9; }
        })
        .attr("cy", function(d,i) { // set up
@@ -304,28 +308,28 @@ function init() {
        .transition()
        .delay(1500)
        .duration(1000)
-       .attr("cx", width/2 + 50)
+       .attr("cx", width/2)
        .attr("cy", margin.top + 200);
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i==4; })
        .transition()
        .delay(1500)
        .duration(1500)
-       .attr("cx", width/3 - 20)
+       .attr("cx", margin.left + 20)
        .attr("cy", margin.top + 200);
     svg.select("#disc")
        .transition()
        .delay(2500)
        .duration(500)
-       .attr("cx", width/2 + 50)
+       .attr("cx", width/2)
        .attr("cy", margin.top + 200);
     d3.select("#button-animate")
       .transition()
       .delay(3500)
-      .style("display", "inline");
+      .style("background-color", "red");
   }; // end animate_zigzag
   function animate_zigzag_backhand() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     svg.selectAll(".offenseDots")
        .transition()
        .duration(1500)
@@ -333,8 +337,8 @@ function init() {
          if (i==0) { return width/2; } // handler 1
          else if (i==1) { return width/3; } // handler 2
          else if (i==2) { return width*.9; } // handler 3
-         else if (i==3) { return width/3 + 10; } // iso cutter
-         else if (i==4) { return width/2 + 30; } // iso cutter
+         else if (i==3) { return margin.left + 10; } // iso cutter
+         else if (i==4) { return width/2; } // iso cutter
          else { return width*.9; }
        })
        .attr("cy", function(d,i) { // set up
@@ -351,25 +355,25 @@ function init() {
        .transition()
        .delay(1500)
        .duration(1000)
-       .attr("cx", width/2 + 50)
+       .attr("cx", width/2)
        .attr("cy", margin.top + 200);
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i==4; })
        .transition()
        .delay(1500)
        .duration(1500)
-       .attr("cx", width/3 - 20)
+       .attr("cx", margin.left + 10)
        .attr("cy", margin.top + 200);
     svg.select("#disc")
        .transition()
        .delay(2500)
        .duration(500)
-       .attr("cx", width/2 + 50)
+       .attr("cx", width/2)
        .attr("cy", margin.top + 200);
     d3.select("#button-animate")
       .transition()
       .delay(3500)
-      .style("display", "inline");
+      .style("background-color", "red");
   }; // end animate_zigzag
   function set_flood() {
     // Players
@@ -401,7 +405,7 @@ function init() {
     display(false);
   }; // end set_flood
   function animate_flood() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     // flood
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i<6; })
@@ -436,7 +440,7 @@ function init() {
    d3.select("#button-animate")
      .transition()
      .delay(2100)
-     .style("display", "inline");
+     .style("background-color", "red");
   }; // end animate_flood
   function set_grime1() {
     // Players
@@ -473,7 +477,7 @@ function init() {
     display(true);
   }; // end set_grime1
   function animate_grime1() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i==2; })
        .transition()
@@ -507,7 +511,7 @@ function init() {
     d3.select("#button-animate")
       .transition()
       .delay(3500)
-      .style("display", "inline");
+      .style("background-color", "red");
   }; // end animate_grime1
   function set_grime2() {
     // Players
@@ -544,7 +548,7 @@ function init() {
     display(true);
   }; // end set_grime2
   function animate_grime2() {
-    d3.select("#button-animate").style("display", "none"); // Disable animate
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
     svg.selectAll(".offenseDots")
        .filter(function(d,i) { return i==3; })
        .transition()
@@ -571,8 +575,151 @@ function init() {
     d3.select("#button-animate")
       .transition()
       .delay(3500)
-      .style("display", "inline");
+      .style("background-color", "red");
   }; // end animate_grime2
+  function set_hike() {
+    // Players
+    svg.selectAll(".offenseDots")
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // reset 1
+         else if (i==1) { return width-margin.right; } // disc
+         else { return width/2; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 75; } // reset 1
+         else if (i==1) { return margin.top + 30; } // disc
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 160; } // cutter 1
+         else if (i==4) { return margin.top + 200; } // cutter 2
+         else if (i==5) { return margin.top + 240; } // cutter 3
+         else if (i==6) { return margin.top + 280; } // cutter 4
+       })
+    // Disc
+    svg.select("#disc")
+       .attr("cx", width-margin.right)
+       .attr("cy", margin.top + 30)
+    // Force
+    svg.select("#force")
+       .attr("x1", width-margin.right-20)
+       .attr("x2", width-margin.right)
+       .attr("y1", margin.top + 35)
+       .attr("y2", margin.top + 50);
+    // Hike word
+    svg.select("#word")
+       .text("HIKE!")
+       .attr("x", width/2-55)
+       .attr("y", margin.top+80);
+    // Defense1
+    svg.select("#defense1")
+       .attr("x1", width/2+40)
+       .attr("x2", width/2+65)
+       .attr("y1", margin.top+95)
+       .attr("y2", margin.top+95)
+       .style("display", "inline")
+    display(false);
+  }; // end set_hike
+  function animate_hike() {
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
+    svg.select("#word")
+       .style("display", "inline")
+       .transition()
+       .delay(500)
+       .style("display", "none");
+    svg.selectAll(".offenseDots")
+       .filter(function(d,i) { return i==0})
+       .transition()
+       .style("fill", "blue")
+       .transition()
+       .delay(500)
+       .style("fill", "black")
+       .duration(1000)
+       .attr("cy", margin.top + 60);
+    svg.select("#disc")
+       .transition()
+       .delay(500)
+       .duration(1500)
+       .attr("cx", width/2)
+       .attr("cy", margin.top + 60)
+    d3.select("#button-animate")
+      .transition()
+      .delay(2500)
+      .style("background-color", "red");
+  }; // end animate_hike
+  function set_snap() {
+    // Players
+    svg.selectAll(".offenseDots")
+       .attr("cx", function(d,i) { // set up
+         if (i==0) { return width/2; } // reset 1
+         else if (i==1) { return width-margin.right; } // disc
+         else { return width/2; }
+       })
+       .attr("cy", function(d,i) { // set up
+         if (i==0) { return margin.top + 75; } // reset 1
+         else if (i==1) { return margin.top + 30; } // disc
+         else if (i==2) { return margin.top + 120; } // top of stack
+         else if (i==3) { return margin.top + 160; } // cutter 1
+         else if (i==4) { return margin.top + 200; } // cutter 2
+         else if (i==5) { return margin.top + 240; } // cutter 3
+         else if (i==6) { return margin.top + 280; } // cutter 4
+       })
+    // Disc
+    svg.select("#disc")
+       .attr("cx", width-margin.right)
+       .attr("cy", margin.top + 30)
+    // Force
+    svg.select("#force")
+       .attr("x1", width-margin.right-20)
+       .attr("x2", width-margin.right)
+       .attr("y1", margin.top + 35)
+       .attr("y2", margin.top + 50);
+    // Snap word
+    svg.select("#word")
+       .text("SNAP!")
+       .attr("x", width/2-65)
+       .attr("y", margin.top+125);
+    // Defense1
+    svg.select("#defense1")
+       .attr("x1", width/2+45)
+       .attr("x2", width/2+70)
+       .attr("y1", margin.top+135)
+       .attr("y2", margin.top+135)
+       .style("display", "inline")
+    display(false);
+  }; // end set_snap
+  function animate_snap() {
+    d3.select("#button-animate").style("background-color", "gray"); // Disable animate
+    svg.select("#word")
+       .style("display", "inline")
+       .transition()
+       .delay(500)
+       .style("display", "none");
+    svg.selectAll(".offenseDots") // front of stack yells snap
+       .filter(function(d,i) { return i==2; })
+       .transition()
+       .style("fill", "blue")
+       .transition()
+       .delay(500)
+       .style("fill", "black")
+       .duration(1500)
+       .attr("cy", margin.top + 50);
+    svg.selectAll(".offenseDots") // reset 1 goes upline
+       .filter(function(d,i) { return i==0})
+       .transition()
+       .delay(500)
+       .duration(1500)
+       .attr("cy", margin.top + 120)
+       .attr("cx", width-margin.right);
+    svg.select("#disc")
+       .transition()
+       .delay(1000)
+       .duration(1500)
+       .attr("cx", width/2)
+       .attr("cy", margin.top+50);
+    d3.select("#button-animate")
+      .transition()
+      .delay(3500)
+      .style("background-color", "red");
+  }; // end animate_snap
   function buttonClicked(button) {
     button.style("background-color", "navy");
     button.style("color", "white");
@@ -649,7 +796,27 @@ function init() {
       animate_grime2();
       set_grime2();
     })
-  })
+  });
+  d3.select("#button-hike").on("click", function() {
+    reset();
+    set_hike();
+    buttonClicked(d3.select(this));
+    buttonClicked(d3.select("#button-hike"));
+    d3.select("#button-animate").on("click", function() {
+      animate_hike();
+      set_hike();
+    })
+  });
+  d3.select("#button-snap").on("click", function() {
+    reset();
+    set_snap();
+    buttonClicked(d3.select(this));
+    buttonClicked(d3.select("#button-snap"));
+    d3.select("#button-animate").on("click", function() {
+      animate_snap();
+      set_snap();
+    })
+  });
 };
 
 var numEntered = []; // array to hold numbers entered
